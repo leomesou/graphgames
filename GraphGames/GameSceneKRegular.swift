@@ -80,8 +80,8 @@ class GameSceneKRegular: GameScene {
 	func getPlistData() {
 		let gameDefinitions = plistManager.gameDefinitionsDict.value(forKey: "kregular") as! NSMutableArray
 		let values = gameDefinitions.object(at: levelNumber-1) as! NSArray
-		numberOfVertices = values.object(at: 0) as! Int
-		degree = values.object(at: 1) as! Int
+        numberOfVertices = values.object(at: 0) as? Int
+        degree = values.object(at: 1) as? Int
 	}
 	
 	func createVertices(_ numberOfVertices: Int) -> [Vertex] {

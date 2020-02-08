@@ -13,10 +13,8 @@ import SpriteKit
 let soundManager = SoundManager()
 
 enum Sound: String {
-	
 	case connect  = "connect.mp3"
 	case complete = "complete.mp3"
-	
 }
 
 class SoundManager: NSObject {

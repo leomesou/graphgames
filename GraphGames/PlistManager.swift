@@ -34,10 +34,10 @@ class PlistManager: NSObject {
 		do {
 			let data = fileManager.contents(atPath: path)!
 			if nameFile == "GameData" {
-				try gameDataDict = PropertyListSerialization.propertyList(from: data, options: .mutableContainersAndLeaves, format: nil) as! NSMutableDictionary
+                try gameDataDict = PropertyListSerialization.propertyList(from: data, options: .mutableContainersAndLeaves, format: nil) as? NSMutableDictionary
 			}
 			else if nameFile == "GameDefinitions" {
-				try gameDefinitionsDict = PropertyListSerialization.propertyList(from: data, options: .mutableContainersAndLeaves, format: nil) as! NSMutableDictionary
+                try gameDefinitionsDict = PropertyListSerialization.propertyList(from: data, options: .mutableContainersAndLeaves, format: nil) as? NSMutableDictionary
 			}
 		}
 		catch {
