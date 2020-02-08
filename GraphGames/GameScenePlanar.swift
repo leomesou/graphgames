@@ -189,7 +189,7 @@ class GameScenePlanar: GameScene {
 			
 			newEdge.strokeColor = edges[edgeNumber].strokeColor
 			
-			let index = vertices[vertexNumber].edgesConnected.index(of: edgeNumber)
+			let index = vertices[vertexNumber].edgesConnected.firstIndex(of: edgeNumber)
 			vertices[vertexNumber].edgesConnected.remove(at: index!)
 			edges[edgeNumber].removeFromParent()
 			edges.remove(at: edgeNumber)

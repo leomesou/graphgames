@@ -248,7 +248,7 @@
 					9CFEFCDD1C9782C0006E1D50 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = M9WZCKHQG8;
-						LastSwiftMigration = 0940;
+						LastSwiftMigration = 1130;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -464,7 +464,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.leomesou.GraphGames;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -482,7 +482,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.leomesou.GraphGames;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

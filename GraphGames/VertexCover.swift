@@ -68,16 +68,16 @@ class VertexCover: NSObject {
 		var edges = fromEdges
 		for edgeInArray in edges {
 			if edgeInArray.firstVertexNumber == edge.firstVertexNumber {
-				edges.remove(at: edges.index(of: edgeInArray)!)
+				edges.remove(at: edges.firstIndex(of: edgeInArray)!)
 			}
 			else if edgeInArray.firstVertexNumber == edge.lastVertexNumber {
-				edges.remove(at: edges.index(of: edgeInArray)!)
+				edges.remove(at: edges.firstIndex(of: edgeInArray)!)
 			}
 			else if edgeInArray.lastVertexNumber == edge.firstVertexNumber {
-				edges.remove(at: edges.index(of: edgeInArray)!)
+				edges.remove(at: edges.firstIndex(of: edgeInArray)!)
 			}
 			else if edgeInArray.lastVertexNumber == edge.lastVertexNumber {
-				edges.remove(at: edges.index(of: edgeInArray)!)
+				edges.remove(at: edges.firstIndex(of: edgeInArray)!)
 			}
 		}
 		return edges
