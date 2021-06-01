@@ -9,21 +9,20 @@
 import SpriteKit
 
 class LoadingScreen: SKScene {
-	
+
 	override init() {
 		super.init(size: screenSize)
 	}
-	
+
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-	
+
 	override func didMove(to view: SKView) {
-		
-//		createBackground()
+		//createBackground()
 		presentMenu()
 	}
-	
+
 //	func createBackground() {
 //		let background = SKSpriteNode(imageNamed: "background")
 //		background.size = screenSize)
@@ -31,7 +30,7 @@ class LoadingScreen: SKScene {
 //		background.zPosition = -1
 //		addChild(background)
 //	}
-	
+
 	func presentMenu() {
 		let mainMenu = MainMenu()
 		mainMenu.scaleMode = .aspectFill

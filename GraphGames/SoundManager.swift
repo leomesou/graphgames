@@ -18,11 +18,11 @@ enum Sound: String {
 }
 
 class SoundManager: NSObject {
-	
+
 	func playSound(_ sound : Sound) {
-		
+
 		guard let isSoundOn = userDefaultManager.getElementForKey("isSoundOn") as? Bool else { return }
-		
+
 		if isSoundOn {
 			SKAction.playSoundFileNamed(sound.rawValue, waitForCompletion: false)
 		}

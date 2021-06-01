@@ -10,35 +10,35 @@ import UIKit
 import SpriteKit
 
 class GameViewController: UIViewController {
-	
+
 	override func viewDidLoad() {
-		
+
 //		//GameCenter
 //		NSNotificationCenter.defaultCenter().addObserver(self, selector:
 //			Selector("showAuthenticationViewController"), name:
 //			PresentAuthenticationViewController, object: nil)
 //		GameKitHelper.sharedInstance.authenticateLocalPlayer()
-		
+
 		super.viewDidLoad()
-		
+
 		loadingScreen()
 	}
-	
+
 	func loadingScreen() {
 		let loadingScreen = LoadingScreen()
 		loadingScreen.scaleMode = .aspectFill
-		
+
 		// Configure the view.
 		let skView = self.view as! SKView
 		skView.ignoresSiblingOrder = true
-		
+
 		skView.presentScene(loadingScreen)
 	}
-	
+
 	override var shouldAutorotate : Bool {
 		return true
 	}
-	
+
 	override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
 		if UIDevice.current.userInterfaceIdiom == .phone {
 			return .allButUpsideDown
@@ -46,17 +46,17 @@ class GameViewController: UIViewController {
 			return .all
 		}
 	}
-	
+
 	override var prefersStatusBarHidden : Bool {
 		return true
 	}
-	
+
 	/*
 	//GameCenter
 	func showAuthenticationViewController() {
-		
+
 		let gameKitHelper = GameKitHelper.sharedInstance
-		
+
 		if let authenticationViewController = gameKitHelper.authenticationViewController {
 			presentViewController(authenticationViewController, animated: true, completion: nil)
 		}

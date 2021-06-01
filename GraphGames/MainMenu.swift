@@ -9,26 +9,26 @@
 import SpriteKit
 
 class MainMenu: SKScene {
-	
+
 	let background = SKSpriteNode(imageNamed: "background")
 	let logo       = SKSpriteNode(imageNamed: "logo")
-	
+
 	let btnPlay       = GenericButton(titleName: "PLAY")
 	let btnGameCenter = GenericButton(titleName: "GAME CENTER")
 	let btnOptions    = GenericButton(titleName: "OPTIONS")
-	
+
 	let optionsScreen = OptionsScreen()
-	 
+
 	override init() {
 		super.init(size: screenSize)
 	}
-	
+
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-	
+
 	override func didMove(to view: SKView) {
-//		createSound()
+		//createSound()
 		createBackground()
 		createLogo()
 		createButtonPlay()
@@ -36,24 +36,24 @@ class MainMenu: SKScene {
 		createButtonOptions()
 		animateLogo()
 	}
-	
+
 	func createSound() {
-//		soundManager.playBackgroundSound(Sound.mainMenu)
+		//soundManager.playBackgroundSound(Sound.mainMenu)
 	}
-	
+
 	func createBackground() {
 		background.position = CGPoint(x: frame.midX, y: frame.midY)
 		background.zPosition = -1
 		addChild(background)
 	}
-	
+
 	func createLogo() {
 		logo.setScale(0.95)
 		logo.position = CGPoint(x: frame.midX, y: frame.maxY - 300)
 		logo.zPosition = 4
 		addChild(logo)
 	}
-	
+
 	func createButtonPlay() {
 		btnPlay.size = CGSize(width: 750, height: 180)
 		btnPlay.position = CGPoint(x: frame.midX, y: frame.midY + 00.0)
@@ -63,7 +63,7 @@ class MainMenu: SKScene {
 		btnPlay.zPosition = 98
 		addChild(btnPlay)
 	}
-	
+
 	func createButtonGameCenter() {
 		btnGameCenter.size = CGSize(width: 700, height: 140)
 		btnGameCenter.position = CGPoint(x: frame.midX, y: frame.midY - 310.0)
@@ -73,7 +73,7 @@ class MainMenu: SKScene {
 		btnGameCenter.zPosition = 98
 		addChild(btnGameCenter)
 	}
-	
+
 	func createButtonOptions() {
 		btnOptions.size = CGSize(width: 700, height: 140)
 		btnOptions.position = CGPoint(x: frame.midX, y: frame.midY - 510.0)
@@ -84,30 +84,30 @@ class MainMenu: SKScene {
 		addChild(btnOptions)
 		addChild(optionsScreen)
 	}
-	
+
 	func animateLogo() {
 		let logoAction = SKAction.scale(to: 1.00, duration: 0.75)
 		logo.run(logoAction)
 	}
-	
+
 	func actionPlay() {
 		let gameSelectionMenu = GameSelectionMenu()
 		gameSelectionMenu.scaleMode = .aspectFill
 		view?.presentScene(gameSelectionMenu)
 	}
-	
+
 	func actionGameCenter() {
-//		GameKitHelper.sharedInstance.showGKGameCenterViewController(view?.window?.rootViewController)
+		//GameKitHelper.sharedInstance.showGKGameCenterViewController(view?.window?.rootViewController)
 	}
 
 	func actionOptions() {
 		optionsScreen.show()
 	}
-	
+
 	override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
 		for touch: AnyObject in touches {
 			let location = touch.location(in: self)
-			
+
 			if btnPlay.contains(location) {
 				btnPlay.colorBlendFactor = 0.3
 			} else {
@@ -125,11 +125,11 @@ class MainMenu: SKScene {
 			}
 		}
 	}
-	
+
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		for touch: AnyObject in touches {
 			let location = touch.location(in: self)
-			
+
 			if btnPlay.contains(location) {
 				btnPlay.colorBlendFactor = 0.3
 			}
@@ -141,15 +141,15 @@ class MainMenu: SKScene {
 			}
 		}
 	}
-	
+
 	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 		for touch: AnyObject in touches {
 			let location = touch.location(in: self)
-			
+
 			btnPlay.colorBlendFactor = 0.0
 			btnGameCenter.colorBlendFactor = 0.0
 			btnOptions.colorBlendFactor = 0.0
-			
+
 			if btnPlay.contains(location) {
 				actionPlay()
 			}

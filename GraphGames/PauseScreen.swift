@@ -9,8 +9,9 @@
 import SpriteKit
 
 class PauseScreen: SKNode {
-	
+
 }
+
 /*
 	let btnHome   = HomeButton()
 	let btnReload = ReloadButton()

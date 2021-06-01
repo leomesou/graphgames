@@ -9,7 +9,7 @@
 import UIKit
 
 class VertexCover: NSObject {
-	
+
 	func verifyEdgeCoverComplete(_ vertices: [Vertex]) -> Bool {
 		for vertex in vertices {
 			if vertex.edgesConnected == [] {
@@ -18,7 +18,7 @@ class VertexCover: NSObject {
 		}
 		return true
 	}
-	
+
 //	func verifyEdgeCoverPerfect(vertices: [Vertex]) -> Bool {
 //		for vertex in vertices {
 //			if vertex.edgesConnected == [] {
@@ -27,17 +27,17 @@ class VertexCover: NSObject {
 //		}
 //		return true
 //	}
-	
+
 	func verifyVertexCoverComplete(_ edges: [Edge], selectedVertices: [Int]) -> Bool {
 		for edge in edges {
 			if !(selectedVertices.contains(edge.firstVertexNumber) ||
-				 selectedVertices.contains(edge.lastVertexNumber)) {
+					selectedVertices.contains(edge.lastVertexNumber)) {
 				return false
 			}
 		}
 		return true
 	}
-	
+
 //	func verifyVertexCoverPerfect(edges: [Edge]) -> Bool {
 //		for edge in edges {
 //			if edge....... {
@@ -46,11 +46,11 @@ class VertexCover: NSObject {
 //		}
 //		return true
 //	}
-	
+
 	func approximationVertexCover(_ edges: [Edge]) -> [Edge] {
 		var cover: [Edge] = []
 		var edges = edges
-		
+
 		while edges != [] {
 			let edge = returnAleatoryEdge(edges)
 			cover.append(edge)
@@ -58,12 +58,12 @@ class VertexCover: NSObject {
 		}
 		return cover
 	}
-	
+
 	func returnAleatoryEdge(_ edges: [Edge]) -> Edge {
 		let randomIndex = Int(arc4random_uniform(UInt32(edges.count)))
 		return edges[randomIndex]
 	}
-	
+
 	func removeEdges(_ edge: Edge, fromEdges: [Edge]) -> [Edge] {
 		var edges = fromEdges
 		for edgeInArray in edges {
@@ -82,17 +82,17 @@ class VertexCover: NSObject {
 		}
 		return edges
 	}
-	
+
 	func generateRamdomEdges(_ verticesNumber: Int) -> [Edge] {
 		let maxEdges = maxNumber(verticesNumber-1)
 		let edgesNumber = Int(arc4random_uniform(UInt32(maxEdges)))
-		
+
 		var edges: [Edge] = []
 		while edges.count < edgesNumber {
 			let firstVertex = Int(arc4random_uniform(UInt32(verticesNumber)))
 			var  lastVertex = Int(arc4random_uniform(UInt32(verticesNumber)))
 			while lastVertex == firstVertex {
-				 lastVertex = Int(arc4random_uniform(UInt32(verticesNumber)))
+				lastVertex = Int(arc4random_uniform(UInt32(verticesNumber)))
 			}
 			let edge = Edge(firstVertexNumber: firstVertex, lastVertexNumber: lastVertex)
 			let edgeInverted = Edge(firstVertexNumber: lastVertex, lastVertexNumber: firstVertex)
@@ -102,8 +102,7 @@ class VertexCover: NSObject {
 		}
 		return edges
 	}
-	
-	
+
 	func maxNumber(_ number: Int) -> Int {
 		if number == 1 {
 			return 1
@@ -114,14 +113,14 @@ class VertexCover: NSObject {
 	}
 }
 
-	/*
+/*
 	func OptimalVertexCover (vertices: [Vertex], edges: [Edge]) {
 		var vertices = vertices
 		var edges = edges
 		for vertex in vertices {
 			for ........ {
 				edges = removeEdges(....., fromEdges: edges)
-	
+
 		para cada v em V' {
 			para cada permutacao de V', de tamanho 1 a n {
 				E'' = E'
@@ -135,10 +134,7 @@ class VertexCover: NSObject {
 			}
 		}
 	}
-	*/
-	
 
-/*
 	func APPROXIMATIONVERTEXCOVER(G : Graph) {
 		var C = ∅
 		var E'= G.E

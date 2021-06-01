@@ -11,9 +11,9 @@ import UIKit
 let userDefaultManager = UserDefaultManager()
 
 class UserDefaultManager: NSObject {
-	
+
 	fileprivate let manager = UserDefaults.standard
-	
+
 	func saveElement(_ element: AnyObject, forkey key: String) {
 		switch element {
 		case let intValue as Int:
@@ -24,7 +24,7 @@ class UserDefaultManager: NSObject {
 			break
 		}
 	}
-	
+
 	func getElementForKey(_ key: String) -> AnyObject? {
 		return manager.object(forKey: key) as AnyObject?
 	}

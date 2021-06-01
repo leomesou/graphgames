@@ -9,19 +9,19 @@
 import SpriteKit
 
 class Edge: SKShapeNode {
-	
+
 	var firstVertexNumber: Int
 	var  lastVertexNumber: Int
 	var crossed: Bool = false
-	
+
 	init(firstVertexNumber: Int, lastVertexNumber: Int) {
 		self.firstVertexNumber = firstVertexNumber
 		self.lastVertexNumber  =  lastVertexNumber
 		super.init()
-		
+
 		lineWidth = 10
 		strokeColor = UIColor.black
-		
+
 		let minXEdge: CGFloat = 0.00 //100 + 192
 		let minYEdge: CGFloat = 0.00 //100 + 250
 		let maxXEdge: CGFloat = screenSize.width  // - 100 - 192
@@ -29,10 +29,10 @@ class Edge: SKShapeNode {
 		let rangeXEdge = SKRange(lowerLimit: minXEdge, upperLimit: maxXEdge)
 		let rangeYEdge = SKRange(lowerLimit: minYEdge, upperLimit: maxYEdge)
 		constraints = [SKConstraint.positionX(rangeXEdge, y: rangeYEdge)]
-//		print("RangeXEdge \(rangeXEdge)")
-//		print("RangeYEdge \(rangeYEdge)")
+		//print("RangeXEdge \(rangeXEdge)")
+		//print("RangeYEdge \(rangeYEdge)")
 	}
-	
+
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}

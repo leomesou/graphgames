@@ -9,45 +9,45 @@
 import SpriteKit
 
 class HudManager: SKNode {
-	
+
 	let btnBack    = SKSpriteNode(imageNamed: "buttonArrow")
 	let btnPrevLvl = SKSpriteNode(imageNamed: "buttonArrow")
 	let btnNextLvl = SKSpriteNode(imageNamed: "buttonArrow")
 	let btnRestart = SKSpriteNode(imageNamed: "buttonRestart")
 	let btnOptions = SKSpriteNode(imageNamed: "buttonSettings")
 	let btnState   = SKSpriteNode()
-	
+
 	let optionsInGameScreen = OptionsInGameScreen()
 	let postGameScreen = PostGameScreen()
-	
+
 	override init() {
-		
+
 		super.init()
-		
+
 		addChild(optionsInGameScreen)
 		addChild(postGameScreen)
-		
+
 		createButtonState()
 		createButtonBack()
 		createButtonOptions()
 		createButtonRestart()
-		
+
 		isUserInteractionEnabled = true
-		
+
 		zPosition = 96
 	}
-	
+
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-	
+
 	func createButtonBack() {
 		btnBack.size = CGSize(width: 110, height: 110)
 		btnBack.position = CGPoint(x: 292, y: screenSize.height - 150)
 		btnBack.zPosition = 98
 		addChild(btnBack)
 	}
-	
+
 	func createButtonState() {
 		btnState.color = UIColor.red
 		btnState.size = CGSize(width: 250, height: 125)
@@ -55,26 +55,26 @@ class HudManager: SKNode {
 		btnState.zPosition = 98
 		addChild(btnState)
 	}
-	
+
 	func createButtonOptions() {
 		btnOptions.size = CGSize(width: 100, height: 100)
 		btnOptions.position = CGPoint(x: screenSize.width - 292, y: screenSize.height - 150)
 		btnOptions.zPosition = 98
 		addChild(btnOptions)
 	}
-	
+
 	func createButtonRestart() {
 		btnRestart.size = CGSize(width: 80, height: 80)
 		btnRestart.position = CGPoint(x: screenSize.width/2, y: screenSize.height - 200)
 		btnRestart.zPosition = 98
 		addChild(btnRestart)
 	}
-	
+
 	func createLevelButtons() {
-		
+
 		createButtonPreviousLevel()
 		createButtonNextLevel()
-		
+
 		if let gameScene = parent?.scene as? GameScene {
 			if gameScene.level <= 1 {
 				//Sombrear botão level anterior
@@ -92,7 +92,7 @@ class HudManager: SKNode {
 			}
 		}
 	}
-	
+
 	func createButtonPreviousLevel() {
 		btnPrevLvl.size = CGSize(width: 80, height: 80)
 		btnPrevLvl.position = CGPoint(x: screenSize.width/2 - 125, y: screenSize.height - 200)
@@ -101,7 +101,7 @@ class HudManager: SKNode {
 		btnPrevLvl.colorBlendFactor = 0.0
 		addChild(btnPrevLvl)
 	}
-	
+
 	func createButtonNextLevel() {
 		btnNextLvl.xScale = -1
 		btnNextLvl.size = CGSize(width: 80, height: 80)
@@ -111,7 +111,7 @@ class HudManager: SKNode {
 		btnNextLvl.colorBlendFactor = 0.0
 		addChild(btnNextLvl)
 	}
-	
+
 	func createLabelDegree() {
 		if let gameScene = parent?.scene as? GameSceneKRegular {
 			let lblDegree  = SKLabelNode(fontNamed: font)
@@ -121,7 +121,7 @@ class HudManager: SKNode {
 			lblDegree.zPosition = 98
 			lblDegree.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.center
 			addChild(lblDegree)
-			
+
 			let lblDegreeText = SKLabelNode(fontNamed: font)
 			lblDegreeText.text = "DEGREE"
 			lblDegreeText.fontSize = 35
@@ -131,7 +131,7 @@ class HudManager: SKNode {
 			addChild(lblDegreeText)
 		}
 	}
-	
+
 	func actionState() {
 		if let gameScene = parent?.scene as? GameSceneKRegular {
 			if gameScene.moveVertex {
@@ -144,23 +144,23 @@ class HudManager: SKNode {
 			}
 		}
 	}
-	
+
 	func actionBack() {
 		if let sceneView = parent?.scene?.view,
-			let gameScene = parent?.scene as? GameScene {
+		   let gameScene = parent?.scene as? GameScene {
 			let levelSelectionMenu = LevelSelectionMenu(gameNumber: gameScene.gameNumber)
 			levelSelectionMenu.scaleMode = .aspectFill
 			sceneView.presentScene(levelSelectionMenu)
 		}
 	}
-	
+
 	func actionOptions() {
 		optionsInGameScreen.show()
 	}
-	
+
 	func actionRestart() {
 		if let sceneView = parent?.scene?.view,
-			let gameScene = parent?.scene as? GameScene {
+		   let gameScene = parent?.scene as? GameScene {
 			var newGameScene = GameScene()
 			if gameScene is GameSceneKRegular {
 				newGameScene = GameSceneKRegular(level: gameScene.level)
@@ -174,10 +174,10 @@ class HudManager: SKNode {
 			}
 		}
 	}
-	
+
 	func actionPreviousLevel() {
 		if let sceneView = parent?.scene?.view,
-			let gameScene = parent?.scene as? GameScene {
+		   let gameScene = parent?.scene as? GameScene {
 			var newGameScene = GameScene()
 			if gameScene is GameSceneKRegular {
 				newGameScene = GameSceneKRegular(level: gameScene.level-1)
@@ -191,10 +191,10 @@ class HudManager: SKNode {
 			}
 		}
 	}
-	
+
 	func actionNextLevel() {
 		if let sceneView = parent?.scene?.view,
-			let gameScene = parent?.scene as? GameScene {
+		   let gameScene = parent?.scene as? GameScene {
 			var newGameScene = GameScene()
 			if gameScene is GameSceneKRegular {
 				newGameScene = GameSceneKRegular(level: gameScene.level+1)
@@ -208,11 +208,11 @@ class HudManager: SKNode {
 			}
 		}
 	}
-	
+
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		for touch: AnyObject in touches {
 			let location = touch.location(in: self)
-			
+
 			if btnBack.contains(location) {
 				btnBack.colorBlendFactor = 0.3
 			}
@@ -234,11 +234,11 @@ class HudManager: SKNode {
 			}
 		}
 	}
-	
+
 	override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
 		for touch: AnyObject in touches {
 			let location = touch.location(in: self)
-			
+
 			if btnBack.contains(location) {
 				btnBack.colorBlendFactor = 0.3
 			} else {
@@ -274,11 +274,11 @@ class HudManager: SKNode {
 			}
 		}
 	}
-	
+
 	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 		for touch: AnyObject in touches {
 			let location = touch.location(in: self)
-			
+
 			btnBack.colorBlendFactor = 0.0
 			if btnBack.contains(location) {
 				actionBack()

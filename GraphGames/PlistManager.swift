@@ -11,12 +11,12 @@ import UIKit
 let plistManager = PlistManager()
 
 class PlistManager: NSObject {
-	
+
 	fileprivate let fileManager = FileManager.default
 	fileprivate var path: String!
 	var gameDataDict: NSMutableDictionary!
 	var gameDefinitionsDict: NSMutableDictionary!
-	
+
 	func preparePlistForUse(_ nameFile: String) {
 		let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
 		let documentsDirectory = paths[0] as! String
@@ -34,27 +34,27 @@ class PlistManager: NSObject {
 		do {
 			let data = fileManager.contents(atPath: path)!
 			if nameFile == "GameData" {
-                try gameDataDict = PropertyListSerialization.propertyList(from: data, options: .mutableContainersAndLeaves, format: nil) as? NSMutableDictionary
+				try gameDataDict = PropertyListSerialization.propertyList(from: data, options: .mutableContainersAndLeaves, format: nil) as? NSMutableDictionary
 			}
 			else if nameFile == "GameDefinitions" {
-                try gameDefinitionsDict = PropertyListSerialization.propertyList(from: data, options: .mutableContainersAndLeaves, format: nil) as? NSMutableDictionary
+				try gameDefinitionsDict = PropertyListSerialization.propertyList(from: data, options: .mutableContainersAndLeaves, format: nil) as? NSMutableDictionary
 			}
 		}
 		catch {
 			print("Error creating gamesDict: ", error.localizedDescription)
 		}
 	}
-	
+
 	func saveGame(_ gameNumber: Int, levelNumber: Int, levelState: LevelState) {
-		
+
 		let gameLevels = NSMutableArray(array: gameDataDict.value(forKey: "game\(gameNumber)") as! NSArray)
-		
+
 		gameLevels.replaceObject(at: levelNumber, with: levelState.rawValue)
-		
+
 		gameDataDict.setValue(gameLevels, forKey: "game\(gameNumber)")
 		gameDataDict.write(toFile: path, atomically: true)
 	}
-	
+
 	func resetProgress() {
 		if (fileManager.fileExists(atPath: path)) {
 			do {
@@ -64,7 +64,7 @@ class PlistManager: NSObject {
 				print("Couldn't reset plist: ", error.localizedDescription)
 			}
 		}
-		
+
 		gameDataDict.removeAllObjects()
 		let emptyArray = NSMutableArray(array: Array(repeating: 2, count: numberOfLevels))
 		for gameNumber in 1...4 {
@@ -73,8 +73,7 @@ class PlistManager: NSObject {
 		}
 		gameDataDict.write(toFile: path, atomically: true)
 	}
-	
-	
+
 	//	func loadGameData() {
 	//
 	//		let levelsGame1 = [1,1,1]
